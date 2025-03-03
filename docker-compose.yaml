@@ -101,22 +101,22 @@ services:
       bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
 
 
-  # data-intake-service:
-  #   container_name: data-intake-service
-  #   hostname: data-intake-service
-  #   image: ghcr.io/saludtechalpes/saludtechalpes-data-intake-service:latest
-  #   networks:
-  #     - db_net
-  #     - pulsar
-  #   depends_on:
-  #     broker:
-  #       condition: service_healthy
-  #     db:
-  #       condition: service_started
-  #   env_file:
-  #     - .env.data-intake
-  #   ports:
-  #     - "5000:5000"
+  data-intake-service:
+    container_name: data-intake-service
+    hostname: data-intake-service
+    image: ghcr.io/saludtechalpes/saludtechalpes-data-intake-service:latest
+    networks:
+      - db_net
+      - pulsar
+    depends_on:
+      broker:
+        condition: service_healthy
+      db:
+        condition: service_started
+    env_file:
+      - .env.data-intake
+    ports:
+      - "5004:5000"
 
   data-processor-service:
     container_name: data-processor-service
