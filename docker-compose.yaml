@@ -1,5 +1,3 @@
-version: '3.9'
-
 networks:
   pulsar:
     driver: bridge
@@ -184,3 +182,13 @@ services:
       - db_net
     ports:
       - "5432:5432"
+  bff:
+    container_name: bff
+    hostname: bff
+    image: ghcr.io/saludtechalpes/saludtechalpes-bff-web:latest
+    networks:
+      - pulsar
+    env_file:
+      - .env.bff
+    ports:
+      - "8003:8003"
